@@ -22,8 +22,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Cache node_modules
-        uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
       - name: npm install
         run: |
           npm install
