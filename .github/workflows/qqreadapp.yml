@@ -24,6 +24,7 @@ jobs:
           node-version: 12.x
       - name: npm install
         run: |
+          cd ~/ms
           npm install
       - name: '运行 【QQ阅读APP】'
         if: env.QQREADAPP_HEADER
