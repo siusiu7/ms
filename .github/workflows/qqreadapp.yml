@@ -13,7 +13,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id 
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER }}
+        QQREADAPP_VIDEOHD: ${{ secrets.QQREADAPP_VIDEOHD }}
+        COOKIES_SPLIT: ${{ secrets.COOKIES_SPLIT }}
+        
     steps:
       - name: Checkout
         run: |
@@ -31,11 +36,9 @@ jobs:
         if: env.QQREADAPP_HEADER
         run: |
           cd ~/ms
-          node Task/qqreadapp.js
+          node Task/QQread.js
         env:
-          QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER }}
-          QQREADAPP_VIDEOHD: ${{ secrets.QQREADAPP_VIDEOHD }}
-          COOKIES_SPLIT: ${{ secrets.COOKIES_SPLIT }}
+          
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
@@ -43,3 +46,5 @@ jobs:
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+
+    
