@@ -24,9 +24,11 @@ jobs:
           node-version: 10.x
       - name: npm install
         run: |
+          cd ~/script
           npm install
       - name: "运行【QQ阅读】"
         run: |
+          cd ~/script
           node qqreadapp.js
         env:
           QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
