@@ -30,7 +30,7 @@ jobs:
         if: env.QQREAD_COOKIE
         run: |
           cd ~/ms
-          node QQReadSign.js
+          node Task/QQReadSign.js
         env:
           QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
           QQREADER_COOKIE: ${{ secrets.QQREADER_COOKIE }}
