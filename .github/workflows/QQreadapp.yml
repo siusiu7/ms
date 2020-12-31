@@ -1,4 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+	# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: QQ阅读APP
@@ -14,27 +14,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER }}
+        QQREADAPP_VIDEOHD: ${{ secrets.QQREADAPP_VIDEOHD }}
+        COOKIES_SPLIT: ${{ secrets.COOKIES_SPLIT }}
+        
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ZhiYi-N/script.git ~/script
-      - name: Use Node.js 10.x
+          git clone https://github.com/siusiu7/ms.git ~/ms
+      - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: 12.x
       - name: npm install
+        if: env.QQREADAPP_HEADER
         run: |
-          cd ~/script
+          cd ~/ms
           npm install
-      - name: "运行【QQ阅读】"
+      - name: '运行 【QQ阅读APP】'
+        if: env.QQREADAPP_HEADER
         run: |
-          cd ~/script
-          node qqreadapp.js
+          cd ~/ms
+          node Task/QQread.js
         env:
-          QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
-          QQREADER_COOKIE: ${{ secrets.QQREADER_COOKIE }}
+          
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
