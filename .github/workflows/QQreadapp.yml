@@ -17,8 +17,9 @@ jobs:
     
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/DD-D1/2020scripts.git ~/2020scripts
+        uses: actions/checkout@v1
+        with:
+          repository: DD-D1/2020scripts
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
