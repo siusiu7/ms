@@ -28,7 +28,7 @@ jobs:
       - name: '运行 【QQ阅读APP】'
         if: env.QQREADAPP_HEADER
         run: |
-          cd ~/ms
+          cd ~/Task
           node qqreadapp.js
         env:
           QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER }}
