@@ -1,87 +1,3 @@
-/*
-
- @𝐃𝐃 𝐃𝐃   感谢红鲤鱼大佬
-//++++++++++++++++++++++++++++++++-
-
-
-⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-先看说明 先看说明 先看说明
-
-获取ck的时候显示出错了就是去广告规则的原因
-
-说明:
-
-QQ阅读APP 签到可以获🉐️金币兑换现金
-
-没有阅读时长 没有阅读时长 没有阅读时长
-
-签过了有可能就获取不到ck要等第二天
-
-圈x获取不到ck就把header改成body
-
-打开软件签到获取ck 签过到可能获取不到ck
-
-⚠️看视频领金币 账户信息 2处获取ck的地方⚠️ 2个主机名
-
-
-
-小火箭:签到获取ck
-QQ阅读APP = type=http-request,script-path=QQReadSign.js,pattern=^https:\/\/(commontgw6|eventv3)\.reader\.qq\.com\/*,max-size=131072,requires-body=true,timeout=10,enable=true
-
-定时 QQ阅读APP = type=cron,script-path=QQReadSign.js,cronexpr="0 0 0 * * *",timeout=10,enable=true
-
-
-
-
-
-
-surge:签到获取ck
-QQ阅读APP = type=http-request,pattern=^https:\/\/(commontgw6|eventv3)\.reader\.qq\.com\/*,requires-body=1,max-size=0,script-path=QQReadSign.js
-
-定时 QQ阅读APP = type=cron,cronexp=0 10 0 * * *,script-path=QQReadSign.js
-
-
-
-
-
-圈x:签到获取ck
-^https:\/\/(commontgw6|eventv3)\.reader\.qq\.com\/* url script-request-header QQReadSign.js
-
-定时 0 10 0 * * * QQReadSign.js, tag=QQ阅读APP, enabled=true
-
-
-
-
-
-
-loon:签到获取ck
-http-request ^https:\/\/(commontgw6|eventv3)\.reader\.qq\.com\/* script-path=QQReadSign.js, requires-body=true, timeout=10, tag=QQ阅读APP
-
-
-定时 cron "0 10 0 * * *" script-path=QQReadSign.js 
-
-
-
-
-MITM=commontgw6.reader.qq.com, eventv3.reader.qq.com
-
-
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
 const DD ='QQ阅读APP';
 
 const $ = new Env(DD);
@@ -89,14 +5,15 @@ const $ = new Env(DD);
 
 const logs=0;//设置0关闭日志,1开启日志
 
-
+const notify = $.isNode() ? require('./sendNotify') : '';
+const x = process.env.QQREAD_COOKIE
+const y = process.env.QQREADER_COOKIE
 console.log(`\n============ 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})}  =============\n`)
 
 
 !(async () => {
-  if (typeof $request != "undefined") {
+  if (2>1) {
     await qedssign()
-  } else {
     await nativeSign()
     await checkinSign()
     await punchCardSign()
@@ -292,18 +209,18 @@ dd+="【账号信息查询】"+"当前账号"+$.quer.data.coinBalance+"💰金�
 
 
 function qedssign() {
-  if ($request.url.indexOf("getAcctInfo") > -1) {
-    $.setdata(JSON.stringify($request.headers),'checkinheader')
-    
-    $.msg($.name,"","[获取信息数据]✅成功")}
+  if (2 > -1) {
 
-else
-if ($request.url.indexOf("watchVideo") > -1) {
-$.setdata(JSON.stringify($request.headers),'punchCardheader')
-    $.msg($.name,"","[获取视频数据]✅成功")}
+//$.setdata(process.env.QQREAD_COOKIE,'checkinheader')
+
+$.setdata(process.env.QQREAD_COOKIE.split("\n")[0],'checkinheader')
+$.setdata(process.env.QQREAD_COOKIE.split("\n")[1],'punchCardheader')
+
+//$.setdata(process.env.QQREADER_COOKIE, 'punchCardheader')
+
 
 }
-
+}
 
 
 
