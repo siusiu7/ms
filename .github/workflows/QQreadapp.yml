@@ -17,9 +17,8 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          repository: DD-D1/2020scripts
+        run: |
+          git clone https://github.com/siusiu7/ms.git ~/ms
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
@@ -30,6 +29,7 @@ jobs:
       - name: '运行 【QQ阅读】'
         if: env.QQREAD_COOKIE
         run: |
+          cd ~/ms
           node QQReadSign.js
         env:
           QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
