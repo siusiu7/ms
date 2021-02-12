@@ -15,20 +15,17 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/ziye12/JavaScript.git ~/JavaScript
+        uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: npm install
         run: |
-          cd ~/JavaScript
           npm install
       - name: '运行 【多看点】'
         run: |
-          cd ~/JavaScript
-          node Task/duokandian.js
+          node duokandian.js
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
