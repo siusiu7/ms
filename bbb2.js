@@ -11,7 +11,7 @@ var i=0,num=0;
 //  ``,
 //  ``,
 //]
-let CookieVal = process.env.BBBCK
+let CookieVal = process.env.BBBCK2
 
 if ($.isNode()) {
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
