@@ -26,8 +26,8 @@ jobs:
           npm install
       - name: '运行 【步步宝】'
         run: |
-          node bbb2.js
+          node bbb.js
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          BBBCK2: ${{ secrets.BBBCK2 }}
+          BBBCK: ${{ secrets.BBBCK }}
