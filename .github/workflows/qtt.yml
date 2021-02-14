@@ -10,10 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-      senku_signKey_qtt: ${{ secrets.senku_signKey_qtt }}
-      senku_signXTK_qtt: ${{ secrets.senku_signXTK_qtt }}
-      senku_readKey_qtt: ${{ secrets.senku_readKey_qtt }}
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 12.x
@@ -24,8 +20,9 @@ jobs:
         run: |
           npm install
       - name: '运行 【趣头条】'
-        if: env.senku_signKey_qtt
         run: |
           node qtt.js
         env:
           senku_signKey_qtt: ${{ secrets.senku_signKey_qtt }}
+          senku_signXTK_qtt: ${{ secrets.senku_signXTK_qtt }}
+          senku_readKey_qtt: ${{ secrets.senku_readKey_qtt }}
