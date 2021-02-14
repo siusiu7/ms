@@ -1,19 +1,18 @@
 // 赞赏:趣头条邀请码`A1040276307`,农妇山泉 -> 有点咸
 const cookieName = '趣头条'
-const signKey = 'senku_signKey_qtt'
-const signXTKKey = 'senku_signXTK_qtt'
-const readKey = 'senku_readKey_qtt'
+const signKey = process.env.senku_signKey_qtt
+const signXTKKey = process.env.senku_signXTK_qtt
+const readKey = process.env.senku_readKey_qtt
+
+//const signKey = 'senku_signKey_qtt'
+//const signXTKKey = 'senku_signXTK_qtt'
+//const readKey = 'senku_readKey_qtt'
 const navCoinKey = 'senku_navCoinKey_qtt'
 const senku = init()
-//const signVal = senku.getdata(signKey)
-//const signXTKVal = senku.getdata(signXTKKey)
-//const readVal = senku.getdata(readKey)
+const signVal = senku.getdata(signKey)
+const signXTKVal = senku.getdata(signXTKKey)
+const readVal = senku.getdata(readKey)
 const navCoinVal = senku.getdata(navCoinKey)
-
-let signVal = process.env.senku_signKey_qtt
-let signXTKVal = process.env.senku_signXTK_qtt
-let readVal = process.env.senku_readKey_qtt
-
 const vsign = 'version=30967000&xhi=200' + signVal
 const signurlVal = 'https://api.1sapp.com/sign/sign?' + vsign
 const adUrl = 'https://api.1sapp.com/sign/adDone?' + vsign
