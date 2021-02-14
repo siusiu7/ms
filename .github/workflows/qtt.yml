@@ -28,4 +28,4 @@ jobs:
           SENKU_SIGNKEY_QTT: ${{ secrets.SENKU_SIGNKEY_QTT }}
           SENKU_SIGNXTK_QTT: ${{ secrets.SENKU_SIGNXTK_QTT }}
           SENKU_READKEY_QTT: ${{ secrets.SENKU_READKEY_QTT }}
-          SENKU_NAVCOINKEY_QTT: ${{ secrets.SENKU_NAVCOINKEY_QTT }}
+
