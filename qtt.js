@@ -8,7 +8,7 @@ const senku = init()
 const signVal = senku.getdata('process.env.SENKU_SIGNKEY_QTT')
 const signXTKVal = senku.getdata('process.env.SENKU_SIGNXTK_QTT')
 const readVal = senku.getdata('process.env.SENKU_READKEY_QTT')
-const navCoinVal = senku.getdata(navCoinKey)
+const navCoinVal = senku.getdata('process.env.SENKU_NAVCOINKEY_QTT')
 const vsign = 'version=30967000&xhi=200' + signVal
 const signurlVal = 'https://api.1sapp.com/sign/sign?' + vsign
 const adUrl = 'https://api.1sapp.com/sign/adDone?' + vsign
