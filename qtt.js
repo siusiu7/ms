@@ -4,7 +4,7 @@ const cookieName = '趣头条'
 //const signXTKKey = 'senku_signXTK_qtt'
 //const readKey = 'senku_readKey_qtt'
 //const navCoinKey = 'senku_navCoinKey_qtt'
-const senku = init()
+
 const signVal = senku.getdata('process.env.SENKU_SIGNKEY_QTT')
 const signXTKVal = senku.getdata('process.env.SENKU_SIGNXTK_QTT')
 const readVal = senku.getdata('process.env.SENKU_READKEY_QTT')
