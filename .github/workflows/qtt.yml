@@ -23,6 +23,5 @@ jobs:
         run: |
           node qtt.js
         env:
-          senku_signKey_qtt: ${{ secrets.senku_signKey_qtt }}
-          senku_signXTK_qtt: ${{ secrets.senku_signXTK_qtt }}
-          senku_readKey_qtt: ${{ secrets.senku_readKey_qtt }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
