@@ -874,6 +874,9 @@ function init() {
       $task.fetch(url).then((resp) => cb(null, resp, resp.body))
     }
   }
+  done = (value = {}) => {
+    $done(value)
+  }
   return {
     isSurge,
     isQuanX,
@@ -882,6 +885,7 @@ function init() {
     getdata,
     setdata,
     get,
-    post
+    post,
+    done
   }
 }
