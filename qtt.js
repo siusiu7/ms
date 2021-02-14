@@ -84,7 +84,7 @@ const signinfo = {
   await getinfo()
   showmsg()
   senku.done()
-})().catch((e) => senku.log(`❌ ${cookieName} 签到失败: ${e}`), senku.done())
+})().catch((e) => senku.log(`❌ ${cookieName} 签到失败: ${e}`), //senku.done())
 
 // 每日登录
 function login() {
