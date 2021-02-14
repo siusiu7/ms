@@ -25,3 +25,6 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          SENKU_SIGNKEY_QTT: ${{ secrets.SENKU_SIGNKEY_QTT }}
+          SENKU_SIGNXTK_QTT: ${{ secrets.SENKU_SIGNXTK_QTT }}
+          SENKU_READKEY_QTT: ${{ secrets.SENKU_READKEY_QTT }}
