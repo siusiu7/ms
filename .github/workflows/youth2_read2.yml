@@ -1,0 +1,54 @@
+name: 二中青自动阅读2
+
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '30 */2 * * *'
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+      YOUTH_READ13: ${{ secrets.YOUTH_READ13 }}
+      YOUTH_READ14: ${{ secrets.YOUTH_READ14 }}
+      YOUTH_READ15: ${{ secrets.YOUTH_READ15 }}
+      YOUTH_READ16: ${{ secrets.YOUTH_READ16 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          npm install
+      - name: '运行 【中青看点自动阅读一】'
+        if: env.YOUTH_READ13
+        run: |
+          node Youth_Read.js
+        env:
+          YOUTH_READ: ${{ secrets.YOUTH_READ13 }}
+
+      - name: '运行 【中青看点自动阅读二】'
+        if: env.YOUTH_READ14
+        run: |
+          node Youth_Read.js
+        env:
+          YOUTH_READ: ${{ secrets.YOUTH_READ14 }}
+          
+      - name: '运行 【中青看点自动阅读三】'
+        if: env.YOUTH_READ15
+        run: |
+          node Youth_Read.js
+        env:
+          YOUTH_READ: ${{ secrets.YOUTH_READ15 }}
+          
+      - name: '运行 【中青看点自动阅读四】'
+        if: env.YOUTH_READ16
+        run: |
+          node Youth_Read.js
+        env:
+          YOUTH_READ: ${{ secrets.YOUTH_READ16 }}
