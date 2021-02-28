@@ -3,7 +3,7 @@ name: 二中青自动阅读1
 on:
   workflow_dispatch:
   schedule:
-     - cron: '1 */2 * * *'
+     - cron: '1 16,18 * * *'
   watch:
     types: started
 jobs:
