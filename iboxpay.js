@@ -230,7 +230,7 @@ iboxpaysms = COOKIE.settings.find(item => item.id === `iboxpaysms`);
 
 }
 
-if (!COOKIE) {
+if (!COOKIE.refreshtokenVal) {
     if ($.isNode()) {
         Object.keys(middlerefreshTOKEN).forEach((item) => {
             if (middlerefreshTOKEN[item]) {
