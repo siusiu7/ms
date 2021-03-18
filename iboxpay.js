@@ -135,22 +135,22 @@ const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 const CS = 5
-$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '', phone = '', sms = '', ddtime = '', spid = '', TOKEN = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', zbid = '', cashcs = '', newcashcs = '', liveId = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '',Length = 0, LIVE = '', phone = '', sms = '', ddtime = '', spid = '', TOKEN = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', zbid = '', cashcs = '', newcashcs = '', liveId = '';
 let livecs = 0,
     videoscs = 0,
     LIVES = 0,
     HBY = 0,
     liveIdcd = 0;
 RT = 30000;
-const refreshtokenArr = [];
+let refreshtokenArr = [];
 let refreshtokenVal = ``;
-const middlerefreshTOKEN = [];
-const iboxpayvideoheaderArr = [];
+let middlerefreshTOKEN = [];
+let iboxpayvideoheaderArr = [];
 let iboxpayvideoheaderVal = ``;
-const middleiboxpayvideoHEADER = [];
-const iboxpayvideobodyArr = [];
+let middleiboxpayvideoHEADER = [];
+let iboxpayvideobodyArr = [];
 let iboxpayvideobodyVal = ``;
-const middleiboxpayvideoBODY = [];
+let middleiboxpayvideoBODY = [];
 if ($.isNode() && COOKIE.datas && COOKIE.datas[0].val != '') {
     console.log(
         `============ cookie方式为：方式一 boxjs复制会话 =============\n`
@@ -230,7 +230,7 @@ iboxpaysms = COOKIE.settings.find(item => item.id === `iboxpaysms`);
 
 }
 
-if (!COOKIE.refreshtokenVal) {
+if (!COOKIE) {
     if ($.isNode()) {
         Object.keys(middlerefreshTOKEN).forEach((item) => {
             if (middlerefreshTOKEN[item]) {
