@@ -46,6 +46,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.9 因视频功能无效，故取消视频，默认开启直播
 3.17 修复视频功能， 暂时设置ck上限为10
 3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话
+3.19 修复ac运行报错
 
 
 
@@ -126,7 +127,7 @@ http-requires https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf_customer_activity\
 
 
 */
-GXRZ = '3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话'
+GXRZ = '3.19 修复ac运行报错'
 const $ = Env("笑谱");
 $.idx = ($.idx = ($.getval('iboxpaySuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -135,7 +136,7 @@ const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 const CS = 5
-$.message = '', COOKIES_SPLIT = '', CASH = '',Length = 1, LIVE = '', phone = '', sms = '', ddtime = '', spid = '', TOKEN = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', zbid = '', cashcs = '', newcashcs = '', liveId = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', Length = 0, LIVE = '', phone = '', sms = '', ddtime = '', spid = '', TOKEN = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', zbid = '', cashcs = '', newcashcs = '', liveId = '';
 let livecs = 0,
     videoscs = 0,
     LIVES = 0,
@@ -164,7 +165,7 @@ if ($.isNode() && COOKIE.refreshtokenVal && COOKIE.refreshtokenVal != '') {
 
 if ($.isNode()) {
     // 没有设置 XP_CASH 则默认为 0 不提现
-    CASH = process.env.XP_CASH || 15;
+    CASH = process.env.XP_CASH || 0;
     // 没有设置 XP_live 则默认0
     LIVE = process.env.XP_live || 1;
     // 没有设置 XP_phone 则默认为 0 
@@ -188,6 +189,7 @@ if ($.isNode() && process.env.XP_refreshTOKEN) {
     } else {
         middlerefreshTOKEN = process.env.XP_refreshTOKEN.split();
     }
+    if (process.env.XP_iboxpayvideoHEADER) {
     if (
         process.env.XP_iboxpayvideoHEADER &&
         process.env.XP_iboxpayvideoHEADER.indexOf(COOKIES_SPLIT) > -1
@@ -204,6 +206,7 @@ if ($.isNode() && process.env.XP_refreshTOKEN) {
     } else {
         middleiboxpayvideoBODY = process.env.XP_iboxpayvideoBODY.split();
     }
+ }
 }
 if (COOKIE.refreshtokenVal) {
     XP_COOKIES = {
@@ -216,11 +219,11 @@ if (COOKIE.refreshtokenVal) {
 }
 if (COOKIE.datas && COOKIE.datas[0].val != '') {
 
-iboxpayCount = COOKIE.settings.find(item => item.id === `iboxpayCount`);
-iboxpayLIVE = COOKIE.settings.find(item => item.id === `iboxpayLIVE`);
-iboxpayCASH = COOKIE.settings.find(item => item.id === `iboxpayCASH`);
-iboxpayphone = COOKIE.settings.find(item => item.id === `iboxpayphone`);
-iboxpaysms = COOKIE.settings.find(item => item.id === `iboxpaysms`);
+    iboxpayCount = COOKIE.settings.find(item => item.id === `iboxpayCount`);
+    iboxpayLIVE = COOKIE.settings.find(item => item.id === `iboxpayLIVE`);
+    iboxpayCASH = COOKIE.settings.find(item => item.id === `iboxpayCASH`);
+    iboxpayphone = COOKIE.settings.find(item => item.id === `iboxpayphone`);
+    iboxpaysms = COOKIE.settings.find(item => item.id === `iboxpaysms`);
 
     Length = iboxpayCount.val
     LIVE = iboxpayLIVE.val
@@ -230,7 +233,7 @@ iboxpaysms = COOKIE.settings.find(item => item.id === `iboxpaysms`);
 
 }
 
-if (!COOKIE) {
+if (!COOKIE.datas&&!COOKIE.refreshtokenVal) {
     if ($.isNode()) {
         Object.keys(middlerefreshTOKEN).forEach((item) => {
             if (middlerefreshTOKEN[item]) {
@@ -545,11 +548,11 @@ async function all() {
             refreshtokens = COOKIE.datas.find(item => item.key === `refreshtoken${op}`);
             iboxpayvideoheader = COOKIE.datas.find(item => item.key === `iboxpayvideoheader${op}`);
             iboxpayvideobody = COOKIE.datas.find(item => item.key === `iboxpayvideobody${op}`);
-            
+
             refreshtokenVal = refreshtokens.val;
             iboxpayvideoheaderVal = iboxpayvideoheader.val;
             iboxpayvideobodyVal = iboxpayvideobody.val;
-            
+
         }
 
         if (COOKIE.refreshtokenVal) {
@@ -558,7 +561,7 @@ async function all() {
             iboxpayvideoheaderVal = XP_COOKIES.iboxpayvideoheaderVal[i];
             iboxpayvideobodyVal = XP_COOKIES.iboxpayvideobodyVal[i];
         }
-        if (!COOKIE) {
+        if (!COOKIE.datas&&!COOKIE.refreshtokenVal) {
 
             refreshtokenVal = refreshtokenArr[i];
             iboxpayvideoheaderVal = iboxpayvideoheaderArr[i];
