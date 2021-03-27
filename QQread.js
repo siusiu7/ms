@@ -283,10 +283,10 @@ async function all() {
       await video(); //观看视频
     }
 
-    if ($.days && $.days.data.userBalance.cash >= 15) {
+    /*if ($.days && $.days.data.userBalance.cash >= 15) {
 
       await cash(); //提现
-    }
+    }*/
   }
 }
 //通知
